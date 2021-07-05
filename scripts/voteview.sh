@@ -1,3 +1,5 @@
+#!/bin/sh
+
 for congress in {1..100}; do
 	./run voteview --congress=$congress --govtrack $@
 
@@ -5,4 +7,3 @@ for congress in {1..100}; do
     export UPDATE_CONGRESS_LEGISLATORS=NO
 done
 ./run voteview --govtrack --congress=101 --session=1989 --chamber=h $@
-

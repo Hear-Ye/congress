@@ -16,10 +16,14 @@ Read about the contents and schema in the [documentation](https://github.com/uni
 
 For background on how this repository came to be, see [Eric's blog post](https://sunlightfoundation.com/blog/2013/08/20/a-modern-approach-to-open-data/).
 
+This repository is a port from 
+[unitedstates/congress](https://github.com/unitedstates/congress). We required a 
+versioning policy which unitedstates organization does not provide, so we made 
+this repository. Most changes here are still coming from the main repository.
 
 ### Setting Up
 
-This project is tested using Python 3.
+This project supports Python 3.6+.
 
 **System dependencies**
 

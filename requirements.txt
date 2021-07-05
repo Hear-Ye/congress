@@ -1,5 +1,4 @@
 pyyaml
-iso8601
 python-dateutil
 lxml>=2.2
 pytz
@@ -7,6 +6,6 @@ cssselect
 scrapelib
 mechanize
 BeautifulSoup4
-mock
 xmltodict
 rtyaml
+requests
