@@ -11,6 +11,10 @@ Additionally, we needed to store older data in bulk for our open source develope
 so we decided to utilize GitHub Actions and its cron job. We update our releases
 of bulk data on a daily cycle.
 
+## New Installation
+
+`pip install congress-crawler`
+
 ### Notes!
 
 After reviewing much of this repository, lots of code is just missing and not updated.
