@@ -19,7 +19,9 @@ For background on how this repository came to be, see [Eric's blog post](https:/
 This repository is a port from 
 [unitedstates/congress](https://github.com/unitedstates/congress). We required a 
 versioning policy which unitedstates organization does not provide, so we made 
-this repository. Most changes here are still coming from the main repository.
+this repository. Most changes here are still coming from the main repository,
+and any changes we make here will most likely end up in the main repository
+as well via PRs.
 
 ### Setting Up
 
