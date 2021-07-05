@@ -1,3 +1,29 @@
+# Hear-Ye/congress
+
+This repository is a port from 
+[unitedstates/congress](https://github.com/unitedstates/congress). We required a 
+versioning policy which the `unitedstates` organization does not provide, so we made 
+this repository. Most changes here are still coming from the main repository,
+and any changes we make here will most likely end up in the main repository
+as well via PRs.
+
+Additionally, we needed to store older data in bulk for our open source developers,
+so we decided to utilize GitHub Actions and its cron job. We update our releases
+of bulk data on a daily cycle.
+
+### Notes!
+
+After reviewing much of this repository, lots of code is just missing and not updated.
+Be careful before using either this port or the main repository. Additionally, we want
+to maintain the same license as the main repository in the spirit of open source and
+being public domain. We firmly believe tools are the main gears of our society, and thus
+this tool in particular should remain free.
+
+The following is the documentation (mostly intact with more features and docs from our 
+repository) from [unitedstates/congress](https://github.com/unitedstates/congress).
+
+---
+
 ## unitedstates/congress
 
 Public domain code that collects data about the bills, amendments, roll call votes, and other core data about the U.S. Congress.
@@ -15,13 +41,6 @@ Includes:
 Read about the contents and schema in the [documentation](https://github.com/unitedstates/congress/wiki) in the github project wiki.
 
 For background on how this repository came to be, see [Eric's blog post](https://sunlightfoundation.com/blog/2013/08/20/a-modern-approach-to-open-data/).
-
-This repository is a port from 
-[unitedstates/congress](https://github.com/unitedstates/congress). We required a 
-versioning policy which unitedstates organization does not provide, so we made 
-this repository. Most changes here are still coming from the main repository,
-and any changes we make here will most likely end up in the main repository
-as well via PRs.
 
 ### Setting Up
 

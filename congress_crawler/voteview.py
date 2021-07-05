@@ -4,6 +4,7 @@ import io
 import logging
 import re
 import time
+from pathlib import Path
 
 from congress_crawler import utils
 from congress_crawler.vote_info import output_vote
@@ -11,7 +12,7 @@ from congress_crawler.vote_info import output_vote
 
 # load some hard-coded codes
 special_vote_options = {}
-for rec in csv.reader(open("tasks/voteview_codedoptions.csv")):
+for rec in csv.reader((Path(__file__) / "voteview_codedoptions.csv").open()):
     if rec[0] == "vote date":
         continue  # header
     special_vote_options[rec[1]] = (
@@ -455,7 +456,7 @@ def parse_vote_list_file(vote_list_file):
                         vote_info["party"],
                         vote_info["state_name"],
                         vote_info["district"],
-                        e.message,
+                        e,
                     )
                 )
                 # logging.error(vote_info)
