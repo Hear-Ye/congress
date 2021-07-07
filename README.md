@@ -9,11 +9,12 @@ as well via PRs.
 
 Additionally, we needed to store older data in bulk for our open source developers,
 so we decided to utilize GitHub Actions and its cron job. We update our releases
-of bulk data on a daily cycle.
+of bulk data on a daily cycle. This can be found at:
+[Hear-Ye/congress-data](https://github.com/Hear-Ye/congress-data)
 
 ## New Installation
 
-`pip install congress-crawler`
+Run `pip install congress-crawler`
 
 ### Notes!
 
