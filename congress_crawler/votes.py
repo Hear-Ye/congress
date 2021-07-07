@@ -55,8 +55,8 @@ def run(options):
         return None
 
     logging.warning(
-        "Going to fetch %i votes from congress #%s session %s"
-        % (len(to_fetch), congress, session_year)
+        f"Going to fetch {len(to_fetch)} votes from congress "
+        f"#{congress} session {session_year}"
     )
 
     utils.process_set(to_fetch, vote_info.fetch_vote, options)
@@ -71,7 +71,7 @@ def vote_ids_for_house(congress, session_year, options):
     index_page = f"https://clerk.house.gov/evs/{session_year}/index.asp"
     group_page = r"ROLL_(\d+)\.asp"
     link_pattern = (
-        r"https://clerk.house.gov/cgi-bin/vote.asp\?year=%s&rollnumber=(\d+)"
+        r"http://clerk.house.gov/cgi-bin/vote.asp\?year=%s&rollnumber=(\d+)"
         % session_year
     )
 
@@ -87,7 +87,7 @@ def vote_ids_for_house(congress, session_year, options):
     # extract matching links
     doc = html.document_fromstring(page)
     links = doc.xpath(
-        "//a[re:match(@href, '%s')]" % group_page,
+        f"//a[re:match(@href, '{group_page}')]",
         namespaces={"re": "http://exslt.org/regular-expressions"},
     )
 
@@ -104,19 +104,19 @@ def vote_ids_for_house(congress, session_year, options):
 
         if not page:
             logging.error(
-                "Couldn't download House vote group page (%s), aborting" % grp
+                f"Couldn't download House vote group page ({grp}), aborting"
             )
             continue
 
         doc = html.document_fromstring(page)
         votelinks = doc.xpath(
-            "//a[re:match(@href, '%s')]" % link_pattern,
+            f"//a[re:match(@href, '{link_pattern}')]",
             namespaces={"re": "http://exslt.org/regular-expressions"},
         )
 
         for votelink in votelinks:
             num = re.match(link_pattern, votelink.get("href")).group(1)
-            vote_id = "h" + num + "-" + str(congress) + "." + session_year
+            vote_id = f"h{num}-{congress}.{session_year}"
             if not should_process(vote_id, options):
                 continue
             vote_ids.append(vote_id)
@@ -140,7 +140,7 @@ def vote_ids_for_senate(congress, session_year, options):
     )
 
     if not page or b"Requested Page Not Found (404)" in page:
-        logging.error("Couldn't download Senate vote XML index %s, skipping" % url)
+        logging.error(f"Couldn't download Senate vote XML index {url}, skipping")
         return None
 
     dom = etree.fromstring(page)
@@ -148,21 +148,21 @@ def vote_ids_for_senate(congress, session_year, options):
     # Sanity checks.
     if int(congress) != int(dom.xpath("congress")[0].text):
         logging.error(
-            "Senate vote XML returns the wrong Congress: %s"
-            % dom.xpath("congress")[0].text
+            f"Senate vote XML returns the wrong Congress: "
+            f"{dom.xpath('congress')[0].text}"
         )
         return None
     if int(session_year) != int(dom.xpath("congress_year")[0].text):
         logging.error(
-            "Senate vote XML returns the wrong session: %s"
-            % dom.xpath("congress_year")[0].text
+            "Senate vote XML returns the wrong session: "
+            f"{dom.xpath('congress_year')[0].text}"
         )
         return None
 
     # Get vote list.
     for vote in dom.xpath("//vote"):
         num = int(vote.xpath("vote_number")[0].text)
-        vote_id = "s" + str(num) + "-" + str(congress) + "." + session_year
+        vote_id = f"s{num}-{congress}.{session_year}"
         if not should_process(vote_id, options):
             continue
         vote_ids.append(vote_id)
