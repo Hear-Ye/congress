@@ -103,9 +103,7 @@ def vote_ids_for_house(congress, session_year, options):
         )
 
         if not page:
-            logging.error(
-                f"Couldn't download House vote group page ({grp}), aborting"
-            )
+            logging.error(f"Couldn't download House vote group page ({grp}), aborting")
             continue
 
         doc = html.document_fromstring(page)
